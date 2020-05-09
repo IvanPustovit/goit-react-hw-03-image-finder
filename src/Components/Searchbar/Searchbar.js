@@ -2,22 +2,24 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Searchbar.css";
 
-const Searchbar = ({ onSubmit, inputChange }) => {
+const Searchbar = ({ onSubmit, inputChange, value }) => {
   return (
     <>
-      <header className="Searchbar">
-        <form className="SearchForm">
+      <header className="searchbar">
+        <form className="search_form">
           <button
             type="submit"
-            className="SearchForm-button"
+            className="search_form-button"
             onClick={onSubmit}
           >
-            <span className="SearchForm-button-label">Search</span>
+            <span className="search_form-button-label">Search</span>
           </button>
 
           <input
-            className="SearchForm-input"
+            className="search_form-input"
             type="text"
+            name="text"
+            value={value}
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"

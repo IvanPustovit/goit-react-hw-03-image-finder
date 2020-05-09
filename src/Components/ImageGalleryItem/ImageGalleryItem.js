@@ -7,10 +7,10 @@ import "./ImageGalleryItem.css";
 const ImageGalleryItem = ({ webformatURL, tags, largeImageURL }) => {
   const [modal, setModal] = useState(false);
 
-  const toggleModal = e => {
+  const toggleModal = (e) => {
     setModal(!modal);
   };
-  const closeModal = e => {
+  const closeModal = (e) => {
     if (e.target.nodeName === "IMG") {
       return;
     }
@@ -22,7 +22,7 @@ const ImageGalleryItem = ({ webformatURL, tags, largeImageURL }) => {
   };
 
   return (
-    <li className="ImageGalleryItem">
+    <li className="image_gallery_item">
       {modal && (
         <Modal
           largeImageURL={largeImageURL}
@@ -35,7 +35,7 @@ const ImageGalleryItem = ({ webformatURL, tags, largeImageURL }) => {
       <img
         src={webformatURL}
         alt={tags}
-        className="ImageGalleryItem-image"
+        className="image_gallery_item-image"
         onClick={toggleModal}
       />
     </li>

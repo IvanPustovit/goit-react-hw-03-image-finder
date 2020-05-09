@@ -7,8 +7,8 @@ import "./ImageGallery.css";
 const ImageGallery = ({ images, toggleModal }) => {
   return (
     <div>
-      <ul className="ImageGallery">
-        {images.map(img => (
+      <ul className="image_gallery">
+        {images.map((img) => (
           <ImageGalleryItem {...img} key={img.id} toggleModal={toggleModal} />
         ))}
       </ul>

@@ -1,12 +1,12 @@
 import React from "react";
 // import Searchbar from "./Components/Searchbar/Searchbar";
 import "./App.css";
-import Main from "./Components/Main/Main";
+import HomePage from "./Components/HomePage/HomePage";
 
 function App() {
   return (
     <div className="App">
-      <Main />
+      <HomePage />
     </div>
   );
 }

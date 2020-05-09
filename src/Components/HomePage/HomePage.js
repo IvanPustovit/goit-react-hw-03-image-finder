@@ -3,29 +3,30 @@ import Axios from "axios";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import Searchbar from "../Searchbar/Searchbar";
 import Button from "../Button/Button";
-import Loader from "react-loader-spinner";
+import Loader from "../Loader/Loaders";
 
 const key = "13722015-1e14ecea112e19cd1d66141e7";
 const url = "https://pixabay.com/api/";
 
-const Main = () => {
+const HomePage = () => {
   const [images, setImages] = useState([]);
   const [name, setName] = useState("");
   const [step, setStep] = useState(1);
   const [loader, setLoader] = useState(false);
 
-  const inputChange = e => {
+  const inputChange = (e) => {
     setName(e.target.value);
     setStep(1);
     setImages([]);
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     getImage(step);
+    setName("");
   };
 
-  const getImage = async step => {
+  const getImage = async (step) => {
     setLoader(true);
     const ursSearch = `${url}?q=${name}&page=${step}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`;
     try {
@@ -54,20 +55,12 @@ const Main = () => {
 
   return (
     <>
-      <Searchbar onSubmit={onSubmit} inputChange={inputChange} />
-      {loader && (
-        <Loader
-          type="Puff"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          timeout={3000} //3 secs
-        />
-      )}
+      <Searchbar onSubmit={onSubmit} inputChange={inputChange} value={name} />
+      {loader && <Loader />}
       {!loader && <ImageGallery images={images} />}
       {!!images.length && <Button currentPage={currentPage} />}
     </>
   );
 };
 
-export default Main;
+export default HomePage;
