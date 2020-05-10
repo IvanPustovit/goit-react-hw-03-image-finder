@@ -4,9 +4,7 @@ import ImageGallery from "../ImageGallery/ImageGallery";
 import Searchbar from "../Searchbar/Searchbar";
 import Button from "../Button/Button";
 import Loader from "../Loader/Loaders";
-
-const key = "13722015-1e14ecea112e19cd1d66141e7";
-const url = "https://pixabay.com/api/";
+import * as api from "../../utils/api";
 
 const HomePage = () => {
   const [images, setImages] = useState([]);
@@ -28,7 +26,7 @@ const HomePage = () => {
 
   const getImage = async (step) => {
     setLoader(true);
-    const ursSearch = `${url}?q=${name}&page=${step}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`;
+    const ursSearch = `${api.url}?q=${name}&page=${step}&key=${api.key}&image_type=photo&orientation=horizontal&per_page=12`;
     try {
       const res = await Axios.get(ursSearch);
       setImages(images.concat(res.data.hits));
