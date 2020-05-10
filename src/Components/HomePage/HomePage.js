@@ -11,6 +11,7 @@ const HomePage = () => {
   const [name, setName] = useState("");
   const [step, setStep] = useState(1);
   const [loader, setLoader] = useState(false);
+  const [errorGet, setError] = useState("");
 
   const inputChange = (e) => {
     setName(e.target.value);
@@ -29,9 +30,10 @@ const HomePage = () => {
     const ursSearch = `${api.url}?q=${name}&page=${step}&key=${api.key}&image_type=photo&orientation=horizontal&per_page=12`;
     try {
       const res = await Axios.get(ursSearch);
-      setImages(images.concat(res.data.hits));
+
+      setImages((prev) => [...prev, ...res.data.hits]);
     } catch (error) {
-      console.log("error");
+      setError("UPS error server");
     } finally {
       setLoader(false);
     }
@@ -57,6 +59,7 @@ const HomePage = () => {
       {loader && <Loader />}
       {!loader && <ImageGallery images={images} />}
       {!!images.length && <Button currentPage={currentPage} />}
+      {!!errorGet.length && <p>{errorGet}</p>}
     </>
   );
 };
